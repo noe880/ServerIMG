@@ -1,0 +1,188 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+/* Estilos generales */
+body {
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    background: radial-gradient(circle, #2c3e50, #1a1a1a);
+    overflow-x: hidden; /* Evita el desplazamiento horizontal */
+    overflow-y: auto; /* Permite el desplazamiento vertical */
+}
+
+header {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+
+.logoTec img {
+    width: 150px;
+    height: auto;
+}
+
+/* Contenedor principal */
+.container {
+    display: flex;
+    background-color: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(12px);
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.5);
+    width: 70%;
+    height: auto;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+/* Imagen */
+.img {
+    width: 50%;
+    object-fit: cover;
+    border-radius: 20px 0 0 20px;
+}
+
+/* Área de formulario */
+.record-data {
+    width: 50%;
+    padding: 40px;
+    flex-direction: column;
+}
+
+/* Campos de entrada */
+/* Input */
+input {
+    padding: 12px; 
+    border: none;
+    border-radius: 8px;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    box-sizing: border-box; /* Asegura que el padding no afecte el ancho total */
+}
+
+input::placeholder {
+    color: #ddd;
+}
+
+input:focus {
+    background-color: rgba(255, 255, 255, 0.3);
+    outline: 2px solid #f1c40f;
+}
+
+/* Botón */
+.button {
+    background-color: #f39c12;
+    color: white;
+    padding: 12px; /* Asegura que el padding sea el mismo que el input */
+    border: none;
+    border-radius: 8px;
+    font-size: 16px; /* Ajusta según el tamaño del texto del input */
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+    text-transform: uppercase;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    box-sizing: border-box; /* Asegura que el padding no afecte el ancho total */
+}
+
+
+.button:hover {
+    background-color: #e67e22;
+    transform: translateY(-2px);
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.4);
+}
+
+/* Registro y enlaces */
+.login {
+    text-align: left;
+    margin-top: 15px;
+}
+
+.login {
+    color: #f1c40f;
+    font-weight: bold;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.login:hover {
+    text-decoration: underline;
+}
+
+/* Mensaje emergente */
+.containermensaje {
+    position: fixed;
+    top: 0;
+    height: 40px;
+    width: 60%;
+    background-color: #487698;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    display: none;
+    box-shadow: 2px 2px 3px 2px rgba(0, 0, 0, 0.1);
+    z-index: 999;
+}
+
+.mensaje {
+    color: #f4f4f4;
+    margin-left: 20px;
+    font-size: 14px;
+}
+
+
+.error{
+    display: none;
+}
+
+.error-label{
+    display: none;
+}
+
+.visible{
+    position: absolute;
+    font-size: 12px;
+    display: flex;
+}
+
+.wallet-info{
+    font-size: 12px;
+}
+
+h2 {
+    text-align: left;
+    color: #f1c40f;
+    font-size: 24px;
+    margin: none;
+    padding: none;
+}
+
+p {
+    text-align: left;
+    color: #bbb;
+    font-size: 14px;
+    margin: none;
+    padding: none;
+}
+
+/* Responsividad */
+@media (max-width: 800px) {
+    .container {
+        width: 90%;
+        height: auto;
+    }
+    .img {
+        display: none;
+    }
+    
+    .record-data{
+        width: 90%;
+    }
+    
+}

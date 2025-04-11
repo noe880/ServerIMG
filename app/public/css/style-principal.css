@@ -1,0 +1,556 @@
+body {
+  color: white;
+  font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  margin: 0;
+  position: relative;
+  z-index: 1;
+  background: radial-gradient(circle, #2c3e50, #000000);
+  overflow-x: hidden; /* Evita el desplazamiento horizontal */
+  overflow-y: auto; /* Permite el desplazamiento vertical */
+}
+
+
+header {
+  position: absolute;
+  width: 100%;
+  display: flex;
+  top: 10px;
+  left: 10px;
+}
+
+.logoTec img {
+  width: 150px;
+  height: auto;
+}
+
+.form-container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  flex-grow: 1;
+  /* Ocupa el espacio restante */
+  gap: 15px;
+  margin-right: 40px;
+}
+
+.form-container button {
+  padding: 9px 10px;
+  font-size: 15px;
+  font-weight: bold;
+  color: white;
+  background: linear-gradient(145deg, #ff9900, #ffcc00);
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 4px #cc7a00, 0 0 10px rgba(255, 255, 255, 0.7);
+  cursor: pointer;
+  transition: transform 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+/* //////////////////////////////////////////*/
+
+.maquinita {
+  width: 90%;
+  max-width: 500px;
+}
+
+/* //////////////////////////////////////////*/
+
+.creditos {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  /* Distribuye uniformemente el contenido */
+  align-items: center;
+  /* Centra verticalmente el contenido */
+  padding: 5px 0px 5px 0px;
+  /* Espacio interno */
+}
+
+.premios-creditos {
+  display: flex;
+  width: 49%;
+  background-color: #000000;
+  padding: 0px;
+  border: solid 1px #ffd700;
+  text-shadow: 0 0 5px #ff0000, 0 0 10px #ff0000, 0 0 20px #ff4500;
+  border-radius: 10px;
+}
+
+.premios-creditos h1 {
+  font-family: 'Impact', sans-serif;
+  font-size: 1.4rem;
+  /* Ajusta el tamaño según el diseño */
+  color: #ffd700;
+  /* Color dorado */
+  text-shadow: 0 0 5px #ff0000, 0 0 10px #ff0000, 0 0 20px #ff4500;
+  text-align: center;
+  margin: 0;
+}
+
+
+
+.premios-creditos label {
+  width: 100%;
+  height: 100%;
+  /* Asegura que el contenedor tenga altura suficiente */
+
+  font-family: 'Courier New', Courier, monospace;
+  color: #ff0000;
+  font-size: 1.7rem;
+  font-weight: bold;
+  text-shadow:
+    0 0 5px #ff0000,
+    0 0 10px #ff0000,
+    0 0 20px #ff0000,
+    0 0 30px #ff4d4d,
+    0 0 40px #ff4d4d,
+    0 0 50px #ff4d4d;
+  letter-spacing: 0.1rem;
+  text-align: center;
+  background-color: #000000;
+  border: solid 3px #000000;
+  border-radius: 10px;
+
+  /* Centrar contenido */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+
+/* //////////////////////////////////////////*/
+
+
+.rectangulo {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-template-rows: repeat(7, 1fr);
+  border-radius: 15px;
+  background-image: url("../img/Designer.png");
+  background-size: 70%;
+  background-position: center;
+  background-repeat: no-repeat;
+  /* Borde con efecto de madera */
+  border: 12px solid;
+  border-image: linear-gradient(45deg, #8B5A2B, #A0522D, #D2691E, #8B4513, #A0522D) 1;
+}
+
+.casilla {
+  max-width: 64px;
+  max-height: 64px;
+  border: 3px solid #000000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  color: white;
+  transition: transform 0.2s, box-shadow 0.2s;
+  background-color: rgb(255, 252, 232);
+  padding: 5px;
+}
+
+.empty {
+  border: none;
+  background: none;
+}
+
+.selected {
+  background-color: rgb(255, 0, 0);
+  outline: 3px solid rgb(255, 0, 0);
+  box-shadow: 0 0 20px 10px rgb(255, 0, 0), 0 0 5px 2px rgb(0, 0, 0) inset;
+  border: red;
+}
+
+@keyframes pulsate {
+  from {
+    transform: scale(1);
+  }
+
+  to {
+    transform: scale(1.2);
+  }
+}
+
+
+/* //////////////////////////////////////////*/
+.apuesta {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0px 10px 0px;
+}
+
+.cobrar,
+.iniciar {
+  display: flex;
+  width: 49.3%;
+  background-color: #000000;
+  padding: 0px;
+  border: solid 1px #ffd700;
+  border-radius: 10px;
+  font-family: 'Impact', sans-serif;
+  font-size: 1.5rem;
+  /* Ajusta el tamaño según el diseño */
+  color: #ffd700;
+  /* Color dorado */
+  text-shadow: 0 0 5px #ff0000, 0 0 10px #ff0000, 0 0 20px #ff4500;
+  text-align: center;
+  justify-content: center;
+  margin: 0;
+  padding: 0.2rem 1rem;
+
+}
+
+
+.cobrar:hover,
+.iniciar:hover {
+  background-color: #111;
+  box-shadow: 0 0 10px #ffd700;
+  transform: scale(1.05);
+  cursor: pointer;
+}
+
+
+/* //////////////////////////////////////////*/
+.rectangulo-seleccion {
+  width: calc(100%-5px);
+  display: flex;
+  justify-content: space-between;
+  /* Distribuye uniformemente el contenido */
+  align-items: center;
+  /* Centra verticalmente el contenido */
+  padding: 5px;
+  /* Espacio interno */
+
+  border: 12px solid;
+  border-image: linear-gradient(45deg,
+      #8B5A2B, #A0522D, #D2691E, #8B4513, #A0522D) 1;
+}
+
+.rectangulo-seleccion>* {
+  flex: 1;
+  /* Ocupa todo el espacio disponible */
+  margin: 0 5px;
+  /* Margen entre elementos */
+}
+
+/* Estilos para los elementos hijos de .rectangulo-seleccion */
+.rectangulo-seleccion p {
+  font-size: 16px;
+  /* Tamaño de fuente para los párrafos */
+}
+
+.rectangulo-seleccion .boton {
+  background-color: #007bff;
+  /* Color de fondo para botón */
+  color: #fff;
+  /* Color de texto para botón */
+  border: none;
+  /* Sin borde */
+  border-radius: none;
+  /* Borde redondeado */
+  cursor: pointer;
+  /* Cambia el cursor al pasar sobre el botón */
+}
+
+.assign-button {
+  width: 100%;
+  height: 50%;
+  text-align: center;
+  display: inline-block;
+  background-color: #ffffff;
+  /* Fondo negro */
+  color: #fff;
+  /* Texto blanco */
+  margin: 1px;
+  border: none;
+  font-size: 2rem;
+  padding: 5px;
+  box-sizing: border-box;
+  border-radius: 5px;
+  /* Esquinas redondeadas */
+  cursor: pointer;
+  /* Cambia el cursor a puntero al pasar sobre el botón */
+  transition: all 0.3s ease;
+  /* Suaviza las transiciones */
+}
+
+.assign-button:hover {
+  background-color: #333;
+  /* Cambia el color de fondo al pasar el ratón */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  /* Agrega una sombra */
+  transform: scale(1.05);
+  /* Aumenta ligeramente el tamaño */
+}
+
+.assign-button:active {
+  background-color: #555;
+  /* Color de fondo al hacer clic */
+  transform: scale(0.95);
+  /* Reduce ligeramente el tamaño al hacer clic */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  /* Reduce la sombra */
+}
+
+
+.assign-button img {
+  max-width: 100%;
+  /* Asegura que la imagen no se salga del botón */
+  display: block;
+  /* Evita espacios adicionales debajo de la imagen */
+  margin: 0 auto;
+  /* Centra la imagen horizontalmente */
+}
+
+.img-frutas {
+  max-width: 100%;
+  display: block;
+  margin: 0 auto;
+}
+
+
+
+.creditos-frutas {
+  width: 100%;
+  margin: 1px;
+  font-family: 'Courier New', Courier, monospace;
+  /* Fuente estilo retro */
+  color: #ff0000;
+  /* Rojo intenso */
+  font-size: 2rem;
+  /* Tamaño de los números */
+  font-weight: bold;
+  /* Negrita para mayor impacto */
+  text-shadow:
+    0 0 5px #ff0000,
+    0 0 10px #ff0000,
+    0 0 20px #ff0000,
+    0 0 30px #ff4d4d,
+    0 0 40px #ff4d4d,
+    0 0 50px #ff4d4d;
+  /* Efecto de brillo */
+  letter-spacing: 0.1rem;
+  /* Espaciado entre los números */
+  text-align: center;
+  /* Centrado del texto */
+  display: inline-block;
+  /* Asegura que el estilo sea aplicable en línea */
+  background-color: #000;
+  /* Fondo negro para contraste */
+  border: none;
+}
+
+.ganancia-frutas {
+  width: 100%;
+  margin: 1px;
+  font-family: 'Courier New', Courier, monospace;
+  /* Fuente estilo retro */
+  color: #ffffff;
+  /* Rojo intenso */
+  font-size: 1rem;
+  /* Tamaño de los números */
+  font-weight: bold;
+  /* Negrita para mayor impacto */
+  letter-spacing: 0.1rem;
+  /* Espaciado entre los números */
+  text-align: center;
+  /* Centrado del texto */
+  display: inline-block;
+  /* Asegura que el estilo sea aplicable en línea */
+  background-color: #000;
+  /* Fondo negro para contraste */
+  border: none;
+  background-color: #000;
+  font-family: 'Impact', sans-serif;
+  font-size: 1rem;
+  /* Ajusta el tamaño según el diseño */
+  color: #ffd700;
+  /* Color dorado */
+  text-shadow: 0 0 5px #ff0000, 0 0 10px #ff0000, 0 0 20px #ff4500;
+}
+
+.contenedor-boton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+  width: 110%;
+  overflow: hidden;
+  /* Para evitar que la imagen sobresalga del contenedor */
+}
+
+.contenedor-boton img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  transition: transform 0.2s ease;
+  /* Transición para suavizar el efecto */
+}
+
+.contenedor-boton:active img {
+  transform: scale(0.70);
+  /* Reduce ligeramente la escala al presionar */
+}
+
+
+
+/* //////////////////////////////////////////*/
+
+
+
+.Comprar-creditos {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(255, 255, 255, 0);
+  /* Oscurece ligeramente el fondo */
+  display: none;
+  align-items: safe;
+  justify-content: right;
+  z-index: 20;
+}
+
+.container {
+  width: 255px;
+  height: 255px;
+  margin-top: 70px;
+  margin-right: 30px;
+  background-color: #fff;
+  box-shadow: 4px 4px 5px 4px rgba(0, 0, 0, 0.183);
+  display: flex;
+  border-radius: 20px;
+  justify-content: flex-end;
+  padding: 10px;
+  gap: 30px;
+  z-index: 22;
+}
+
+.record-data {
+  padding: 5% 0% 0% 2%;
+  width: 100%;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+}
+
+h2 {
+  font-size: 15px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+input[type="number"],
+input[type="text"] {
+  width: 100%;
+  padding: 5px;
+  font-size: 16px;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  box-sizing: border-box;
+}
+
+.comprar-solana {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.comprar-solana img {
+  width: 30%;
+}
+
+
+
+.generar {
+  background-color: #060525;
+  color: #fff;
+  padding: 10px 0px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.container-convercion {
+  display: flex;
+}
+
+.container-convercion h2 {
+  width: 50%;
+  font-size: 15px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+p {
+  width: 50%;
+  color: #000000;
+  font-size: 15px;
+  text-align: right;
+}
+
+.form-container-footer {
+  display: none;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+
+.form-container-footer button {
+  padding: 5px;
+  font-size: 13px;
+  font-weight: bold;
+  color: white;
+  background: linear-gradient(145deg, #ff9900, #ffcc00);
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 4px #cc7a00, 0 0 10px rgba(255, 255, 255, 0.7);
+  cursor: pointer;
+  transition: transform 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.comprar{
+  width: 80%;
+}
+
+.cerrar{
+  width: 20%;
+}
+
+@media (max-width: 600px) {
+  header {
+    display: none;
+  }
+  .form-container-footer {
+    display: flex;
+  }
+  .body {
+    top: 0;
+    margin-top: 0;
+  }
+  .maquinita {
+    position: absolute;
+    margin-top: 10px;
+    top: 0;
+  }
+}

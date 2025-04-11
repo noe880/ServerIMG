@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FrutalCoin</title>
+  <link rel="stylesheet" href="css/pago.css">
+</head>
+<body>
+  <header>
+    <div class="logoTec">
+      <img src="./img/tecNMLogo.png" alt="Logo TecNM">
+    </div>
+  </header>
+
+  <div class="container" id="container">
+    <div class="record-data">
+        <div class="container-cantidad">
+            <img src="img/solana.png" alt="solana">
+            <label for="cantidad" id="cantidad" class="cantidad">Cantidad</label>
+        </div>
+      <div id="qrContainer" class="qrContainer">
+        <img src="qr_code_placeholder.png" alt="QR Code de Pago">
+      </div>
+      <label>Referencia:</label><br>
+      <label for="referencia" id="referencia">Referencia</label><br>
+      <label>Si realizaste este pago, no elimines la referencia.</label><br>
+      <button id="cancelar">Eliminar Referencia</button>
+      <button id="url">Pagar</button>
+    </div>
+  </div>
+
+  <div id="container-confirmar" class="container-confirmar">
+    <div class="checkmark"></div>
+    <p class="message">Pago confirmado con éxito</p>
+  </div>
+  <script type="module" src="js/pagos.js"></script>
+</body>
+</html>

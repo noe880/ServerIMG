@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Frutalcoin</title>
+  <link rel="stylesheet" href="css/login.css">
+  <script src="js/login.js" defer></script>
+</head>
+
+<body>
+  <header>
+    <div class="logoTec">
+        <img src="./img/tecNMLogo.png" alt="">
+    </div>
+  </header>
+
+  <div class="container">
+    <img class="img" src="./img/BotellasLogin.png"></img>
+    <div class="record-data">
+      <h2>Inicio de sesión</h2>
+      <p>Bienvenido</p>
+        <form id="login-form">
+          <input type="text" name="user" id="user" placeholder="Nombre de usuario"><br><br>
+          <input type="password" name="password" id="password" placeholder="Contraseña">
+          <div class="registro">
+            <p>¿Todavía no tienes una cuenta? - <a href="/register" class="registrarse">Registrate</a></p>
+          </div>
+          <button class="button" type="submit">Iniciar sesión</button>
+        </form>
+        <label id="errorConfirmPassword" for="confirmpassword" class="error">error</label><br><br>
+    </div>
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/style-principal.css">
+  <script src="js/admin.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+  <script src="https://unpkg.com/@solana/web3.js@latest/lib/index.iife.js"></script>
+  <title>Frutalcoin</title>
+</head>
+
+<body>
+
+  <div id="Comprar-creditos" class="Comprar-creditos" onclick="cerrar(event)">
+    <div id="container" class="container" onclick="event.stopPropagation()">
+      <div class="record-data">
+        <div class="comprar-solana">
+          <img src="img/solana.png" alt="solana">
+        </div>
+        <h2>Cantidad de créditos:</h2>
+        <input type="number" id="amount" placeholder="Monto" aria-describedby="solAmount" 
+          oninput="calcularTotal()" autocomplete="off" inputmode="numeric">
+        <div class="container-convercion">
+          <h2>Total a pagar:</h2>
+          <p id="totalSol">0.00 SOL</p>
+        </div>
+        <button class="generar" onclick="generarPago()">Generar Pago</button>
+      </div>
+    </div>
+  </div>
+
+
+  <header>
+    <div class="logoTec">
+      <img src="./img/tecNMLogo.png" alt="">
+    </div>
+    <div class="form-container">
+      <button id="comprar">Comprar creditos</button>
+      <button id="cerrar">Cerrar sesion</button>
+    </div>
+  </header>
+  <div class="maquinita">
+    <div class="creditos">
+      <div class="premios-creditos">
+        <h1>Premios</h1>
+        <label id="premio" for="Premios">0</label>
+      </div>
+      <div class="premios-creditos">
+        <h1 for="Creditos">Creditos</h1>
+        <label id="creditos" for="Creditos">0</label>
+      </div>
+    </div>
+  
+    <div class="rectangulo">
+      <!-- Fila superior -->
+      <div class="casilla">
+        <img class="img-frutas" src="img/naranja.png">
+      </div>
+      <div class="casilla">
+        <img class="img-frutas" src="img/campana.png">
+      </div>
+      <div class="casilla">
+        <img class="img-frutas" src="img/bar50.png">
+      </div>
+      <div class="casilla">
+        <img class="img-frutas" src="img/bar100.png">
+      </div>
+      <div class="casilla">
+        <img class="img-frutas" src="img/manzana.png">
+      </div>
+      <div class="casilla">
+        <img class="img-frutas" src="img/cerezas.png">
+      </div>
+      <div class="casilla">
+        <img class="img-frutas" src="img/limon.png">
+      </div>
+  
+      <!-- Fila intermedia superior -->
+      <div class="casilla">
+        <img class="img-frutas" src="img/cerezas.png">
+      </div>
+      <div class="empty"></div>
+      <div class="empty"></div>
+      <div class="empty"></div>
+      <div class="empty"></div>
+      <div class="empty"></div>
+      <div class="casilla fresa">
+        <img class="img-frutas" src="img/sandia.png">
+      </div>
+  
+      <!-- Fila intermedia central -->
+      <div class="casilla">
+        <img class="img-frutas" src="img/manzana.png">
+      </div>
+      <div class="empty"></div>
+      <div class="empty"></div>
+      <div class="empty"></div>
+      <div class="empty"></div>
+      <div class="empty"></div>
+      <div class="casilla pera">
+        <img class="img-frutas" src="img/cerezas.png">
+      </div>
+  
+      <!-- Fila intermedia central -->
+      <div class="casilla">
+        <img class="img-frutas" src="img/diamante.png">
+      </div>
+      <div class="empty"></div>
+      <div class="empty"></div>
+      <div class="empty"></div>
+      <div class="empty"></div>
+      <div class="empty"></div>
+      <div class="casilla pera">
+        <img class="img-frutas" src="img/diamante.png">
+      </div>
+  
+      <!-- Fila intermedia central -->
+      <div class="casilla">
+        <img class="img-frutas" src="img/cerezas.png">
+      </div>
+      <div class="empty"></div>
+      <div class="empty"></div>
+      <div class="empty"></div>
+      <div class="empty"></div>
+      <div class="empty"></div>
+      <div class="casilla pera">
+        <img class="img-frutas" src="img/manzana.png">
+      </div>
+  
+      <!-- Fila intermedia inferior -->
+      <div class="casilla">
+        <img class="img-frutas" src="img/estrella.png">
+      </div>
+      <div class="empty"></div>
+      <div class="empty"></div>
+      <div class="empty"></div>
+      <div class="empty"></div>
+      <div class="empty"></div>
+      <div class="casilla platano">
+        <img class="img-frutas" src="img/cerezas.png">
+      </div>
+  
+      <!-- Fila inferior -->
+      <div class="casilla">
+        <img class="img-frutas" src="img/limon.png">
+      </div>
+      <div class="casilla uva">
+        <img class="img-frutas" src="img/cerezas.png">
+      </div>
+      <div class="casilla sandia">
+        <img class="img-frutas" src="img/manzana.png">
+      </div>
+      <div class="casilla melon">
+        <img class="img-frutas" src="img/siete.png">
+      </div>
+      <div class="casilla fresa">
+        <img class="img-frutas" src="img/cerezas.png">
+      </div>
+      <div class="casilla manzana">
+        <img class="img-frutas" src="img/campana.png">
+      </div>
+      <div class="casilla pera">
+        <img class="img-frutas" src="img/naranja.png">
+      </div>
+    </div>
+  
+    <div class="apuesta">
+      <button id="cobrar" class="cobrar" onclick="cobrar()">Cobrar</button>
+      <button id="startButton" class="iniciar">Iniciar</button>
+    </div>
+  
+  
+  
+    <div class="rectangulo-seleccion">
+      <!-- Casillas con frutas y botones -->
+      <div class="casillas">
+        <label class="ganancia-frutas">5</label>
+        <button class="assign-button" data-fruit="manzana">
+          <img class="img-frutas" src="img/manzana.png" alt="manzana">
+        </button>
+        <label class="creditos-frutas" id="manzana">0</label>
+        <div class="contenedor-boton" data-fruit="manzana">
+          <img src="img/boton.png" alt="boton">
+        </div>
+      </div>
+      <div class="casillas">
+        <label class="ganancia-frutas">20</label>
+        <button class="assign-button" data-fruit="sandia">
+          <img class="img-frutas" src="img/sandia.png" alt="sandia">
+        </button>
+        <label class="creditos-frutas" id="sandia">0</label>
+        <div class="contenedor-boton" data-fruit="sandia">
+          <img src="img/boton.png" alt="boton">
+        </div>
+      </div>
+      <div class="casillas">
+        <label class="ganancia-frutas">30</label>
+        <button class="assign-button" data-fruit="estrella">
+          <img class="img-frutas" src="img/estrella.png" alt="estrella">
+        </button>
+        <label class="creditos-frutas" id="estrella">0</label>
+        <div class="contenedor-boton" data-fruit="estrella">
+          <img src="img/boton.png" alt="boton">
+        </div>
+      </div>
+      <div class="casillas">
+        <label class="ganancia-frutas">40</label>
+        <button class="assign-button" data-fruit="siete">
+          <img class="img-frutas" src="img/siete.png" alt="siete">
+        </button>
+        <label class="creditos-frutas" id="siete">0</label>
+        <div class="contenedor-boton" data-fruit="siete">
+          <img src="img/boton.png" alt="boton">
+        </div>
+      </div>
+      <div class="casillas">
+        <label class="ganancia-frutas">100</label>
+        <button class="assign-button" data-fruit="bar">
+          <img class="img-frutas" src="img/bar.png" alt="bar">
+        </button>
+        <label class="creditos-frutas" id="bar">0</label>
+        <div class="contenedor-boton" data-fruit="bar">
+          <img src="img/boton.png" alt="boton">
+        </div>
+      </div>
+      <div class="casillas">
+        <label class="ganancia-frutas">20</label>
+        <button class="assign-button" data-fruit="campana">
+          <img class="img-frutas" src="img/campana.png" alt="campana">
+        </button>
+        <label class="creditos-frutas" id="campana">0</label>
+        <div class="contenedor-boton" data-fruit="campana">
+          <img src="img/boton.png" alt="boton">
+        </div>
+      </div>
+      <div class="casillas">
+        <label class="ganancia-frutas">15</label>
+        <button class="assign-button" data-fruit="limon">
+          <img class="img-frutas" src="img/limon.png" alt="limon">
+        </button>
+        <label class="creditos-frutas" id="limon">0</label>
+        <div class="contenedor-boton" data-fruit="limon">
+          <img src="img/boton.png" alt="boton">
+        </div>
+      </div>
+      <div class="casillas">
+        <label class="ganancia-frutas">10</label>
+        <button class="assign-button" data-fruit="naranja">
+          <img class="img-frutas" src="img/naranja.png" alt="naranja">
+        </button>
+        <label class="creditos-frutas" id="naranja">0</label>
+        <div class="contenedor-boton" data-fruit="naranja">
+          <img src="img/boton.png" alt="boton">
+        </div>
+      </div>
+      <div class="casillas">
+        <label class="ganancia-frutas">2</label>
+        <button class="assign-button" data-fruit="cereza">
+          <img class="img-frutas" src="img/cerezas.png" alt="cereza">
+        </button>
+        <label class="creditos-frutas" id="cereza">0</label>
+        <div class="contenedor-boton" data-fruit="cereza">
+          <img src="img/boton.png" alt="boton">
+        </div>
+      </div>
+    </div>
+    <div class="form-container-footer">
+      <button id="comprar-footer" class="comprar">Comprar creditos</button>
+      <button id="cerrar-footer" class="cerrar">Cerrar sesion</button>
+    </div>
+  </div>
+  <script src="js/script-principal.js"></script>
+  <script src="js/solana.js" defer></script>
+</body>
+
+</html>
