@@ -1,0 +1,24 @@
+.media-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1px;
+}
+
+.gallery-item-container {
+  aspect-ratio: 1 / 1;
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+}
+
+.gallery-item {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.gallery-video {
+  pointer-events: none;
+}
+

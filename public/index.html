@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cloud Storage Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/izitoast/dist/css/iziToast.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/izitoast/dist/js/iziToast.min.js"></script>  
+  <link rel="stylesheet" href="./style.css"/>
+  <style>
+    .progress-container {
+      display: none;
+      margin-top: 10px;
+      width: 100%;
+      background: #e0e0e0;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .progress-bar {
+      height: 8px;
+      background: #4caf50;
+      width: 0%;
+      transition: width 0.4s ease;
+    }
+    .uploading-text {
+      margin-top: 8px;
+      font-size: 14px;
+      text-align: center;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+  <div class="storage-container">
+    <div class="storage-header">
+      <h1 class="storage-title"></h1>
+      <div class="user-avatar">JS</div>
+    </div>
+
+    <div class="storage-status">
+      <div class="storage-percentage">54% Used</div>
+      <p class="storage-description">0 GB de 10 TB de almacenamiento</p>
+    </div>
+
+    <section class="upload-section">
+      <form class="upload-form" action="/upload" method="POST" enctype="multipart/form-data" id="uploadForm">
+        <div class="file-input-wrapper">
+          <input type="file" id="fileInput" class="file-input" name="files[]" multiple required />
+          <label for="fileInput" class="file-label" id="fileLabel">
+            <span class="file-label-text">Selecciona o arrastra tus archivos</span>
+            <span class="file-label-subtext">
+              Formatos soportados: JPG, PNG, GIF, MP4, MOV.
+            </span>
+          </label>
+        </div>
+
+        <div class="upload-actions" id="uploadActions">
+          <button type="submit" class="btn" id="uploadBtn">Subir archivos</button>
+        </div>
+
+        <div class="progress-container" id="progressContainer">
+          <div class="progress-bar" id="progressBar"></div>
+        </div>
+        <div class="uploading-text" id="uploadingText"></div>
+      </form>
+    </section>
+
+    <div class="storage-details">
+      <div class="storage-card">
+        <div class="card-icon">
+          <i class="fas fa-file-alt"></i>
+        </div>
+        <div class="card-value">0 GB</div>
+        <div class="card-label">Documentos</div>
+      </div>
+      <div class="storage-card">
+        <div class="card-icon">
+          <i class="fas fa-images"></i>
+        </div>
+        <div class="card-value">36 GB</div>
+        <div class="card-label">Media</div>
+      </div>
+    </div>
+
+    <div class="storage-categories">
+      <div class="category active-category">
+        <div class="category-icon"><i class="fas fa-file-alt"></i></div>
+        <div class="category-name">Documentos</div>
+      </div>
+      <div class="category">
+        <div class="category-icon"><i class="fas fa-image"></i></div>
+        <div class="category-name">Imagenes</div>
+      </div>
+      <div class="category">
+        <div class="category-icon"><i class="fas fa-video"></i></div>
+        <div class="category-name">Videos</div>
+      </div>
+    </div>
+  </div>
+  <script src="./script.js"></script>
+</body>
+</html>

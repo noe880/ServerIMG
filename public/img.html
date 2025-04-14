@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LITIVO ME | Visualizador</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            font-weight: 300;
+            letter-spacing: -0.5px;
+        }
+
+        body {
+            background-color: #ffffff;
+            color: #000000;
+            min-height: 100vh;
+            flex-direction: column;
+            padding: 40px;
+        }
+
+        .content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .top-button {
+            align-self: flex-start;
+            margin-bottom: 30px;
+            background-color: #00000000;
+            color: #000000;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        .image-container {
+            width: 100%;
+            max-width: 800px;
+            display: flex;
+            justify-content: center;
+        }
+
+        #imagenGrande {
+            height: 100%;
+            max-height: 500px;
+            display: block;
+        }
+
+        .image-info {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        #nombreImagen {
+            font-size: 16px;
+            margin-bottom: 10px;
+            font-weight: 400;
+        }
+
+        .image-meta {
+            font-size: 12px;
+            color: #666;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+            width: 100%;
+        }
+
+        .button {
+            padding: 10px 20px;
+            background-color: #000000;
+            color: #ffffff;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        .button:hover {
+            background-color: #333333;
+        }
+
+        #descargarBtn {
+            padding: 10px 40px; /* Más ancho que el botón normal */
+        }
+
+        .footer {
+            margin-top: 60px;
+            text-align: center;
+            font-size: 12px;
+            color: #999;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 20px;
+            }
+            
+            .header {
+                flex-direction: column;
+                gap: 15px;
+                margin-bottom: 40px;
+            }
+            
+            .nav {
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <!-- Botón Regresar en la parte superior -->
+        <button class="top-button" id="regresarBtn">← Regresar</button>
+        
+        <div class="image-container">
+            <img id="imagenGrande" src="" alt="Imagen">
+        </div>
+        
+        <div class="image-info">
+            <div id="nombreImagen"></div>
+            <div class="image-meta">
+                <span id="imageDimensions"></span>
+                <span id="imageSize"></span>
+            </div>
+        </div>
+
+        <!-- Botón Descargar más largo y centrado -->
+        <div class="button-container">
+            <button class="button" id="descargarBtn">Descargar imagen</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const params = new URLSearchParams(window.location.search);
+            const nombre = params.get('nombre');
+            const url = `/uploads/${nombre}`;
+            
+            const imagenGrande = document.getElementById('imagenGrande');
+            const nombreImagen = document.getElementById('nombreImagen');
+            const imageSize = document.getElementById('imageSize');
+            const imageDimensions = document.getElementById('imageDimensions');
+            const descargarBtn = document.getElementById('descargarBtn');
+            const regresarBtn = document.getElementById('regresarBtn');
+
+            // Cargar imagen
+            imagenGrande.src = url;
+            nombreImagen.textContent = nombre || 'Untitled';
+
+            // Cuando la imagen se carga
+            imagenGrande.onload = function() {
+                imageDimensions.textContent = `${this.naturalWidth} × ${this.naturalHeight} px`;
+                imageSize.textContent = formatFileSize(this.naturalWidth * this.naturalHeight * 3);
+            };
+
+            // Función para formatear el tamaño del archivo
+            function formatFileSize(bytes) {
+                if (bytes === 0) return '0 Bytes';
+                const k = 1024;
+                const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+                const i = Math.floor(Math.log(bytes) / Math.log(k));
+                return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+            }
+
+            // Evento para el botón de descargar
+            descargarBtn.addEventListener('click', function() {
+                const link = document.createElement('a');
+                link.href = url;
+                link.download = nombre || 'imagen';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            });
+
+            // Evento para el botón de regresar
+            regresarBtn.addEventListener('click', function() {
+                window.history.back();
+            });
+        });
+    </script>
+</body>
+</html>
