@@ -2,7 +2,7 @@ const express = require('express');
 const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
-const sharp = require('sharp');
+const Jimp = require('jimp'); // Reemplazamos sharp por Jimp
 const { guardarArchivoEnDB, consultarArchivoEnDB, consultarArchivoPeso } = require('./database');
 
 const app = express();
@@ -28,7 +28,7 @@ const upload = multer({
   }
 });
 
-// Guardar fotos y generar mineaturas
+// Función para generar miniaturas con Jimp
 const generarMiniatura = async (filename) => {
     const inputPath = path.join(__dirname, 'uploads', filename);
     const outputPath = path.join(__dirname, 'uploads', 'thumbs', filename);
@@ -37,26 +37,28 @@ const generarMiniatura = async (filename) => {
       // Verificar si el directorio de thumbs existe, si no, crearlo
       await fs.promises.mkdir(path.dirname(outputPath), { recursive: true });
   
-      // Generar la miniatura solo si es imagen
-      const info = await sharp(inputPath)
-        .resize({
-          width: 200,
-          height: 200,
-          fit: sharp.fit.inside,
-          withoutEnlargement: true
-        })
-        .toFormat('jpeg', {
-          quality: 60
-        })
-        .toFile(outputPath);
-      return info;
+      // Cargar la imagen con Jimp
+      const image = await Jimp.read(inputPath);
+      
+      // Redimensionar y guardar la miniatura
+      await image
+        .resize(200, 200, Jimp.RESIZE_INSIDE) // Equivalente a fit: inside
+        .quality(60) // Calidad del 60%
+        .writeAsync(outputPath);
+      
+      return {
+        format: image.getExtension(),
+        width: image.getWidth(),
+        height: image.getHeight(),
+        size: fs.statSync(outputPath).size
+      };
     } catch (err) {
       console.error('Error al generar miniatura:', err);
       throw err;
     }
-  };
-  
-  app.post('/upload', upload.array('files[]'), async (req, res) => {
+};
+
+app.post('/upload', upload.array('files[]'), async (req, res) => {
     const files = req.files;
   
     try {
@@ -65,7 +67,8 @@ const generarMiniatura = async (filename) => {
             const extension = path.extname(file.filename).substring(1);
             const mimeType = file.mimetype;
             const fileSize = file.size; // Tamaño del archivo en bytes
-            const tipo = obtenerTipoArchivo(extension)
+            const tipo = obtenerTipoArchivo(extension);
+            
             // Guardar archivo en la base de datos, incluyendo la extensión y el tamaño
             await guardarArchivoEnDB(file.filename, extension, fileSize, tipo);
             
@@ -73,7 +76,7 @@ const generarMiniatura = async (filename) => {
             if (mimeType.startsWith('image/')) {
               await generarMiniatura(file.filename);
             }
-          })          
+        })          
       );
   
       res.json({
@@ -91,9 +94,9 @@ const generarMiniatura = async (filename) => {
       console.error('Error al guardar en la base de datos:', err);
       res.status(500).json({ error: 'Error al guardar nombres en la base de datos' });
     }
-  });
+});
   
-  function obtenerTipoArchivo(extension) {
+function obtenerTipoArchivo(extension) {
     // Definir las extensiones para cada tipo de archivo
     const imagenes = ['jpg', 'jpeg', 'png', 'gif', 'bmp', 'tiff'];
     const videos = ['mp4', 'mov', 'avi', 'mkv', 'flv', 'wmv'];
@@ -105,7 +108,7 @@ const generarMiniatura = async (filename) => {
     } else {
       return 'Documentos';
     }
-  }
+}
 
 // Cargar archivos en la carpeta
 app.get('/archivos', async (req, res) => {
@@ -152,7 +155,6 @@ app.get('/archivos-peso', async (req, res) => {
         });
     }
 });
-  
 
 app.listen(PORT, () => {
   console.log(`Servidor corriendo en http://localhost:${PORT}`);
